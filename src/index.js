@@ -42,6 +42,7 @@ const getRandomJokeJSON = () => {
     { q: 'Dad, can you put the cat out?', a: 'I didnt know it was on fire.' },
     { q: 'What did the ocean say to the sailboat?', a: 'Nothing, it just waved.' },
     { q: 'What do you get when you cross a snowman with a vampire?', a: 'Frostbite' },
+    { q: 'Why are you adding another joke to the list?', a: 'So I can get the CircleCI checkmark' }
   ];
   const joke = jokes[Math.floor(Math.random() * jokes.length)];
   const responseObj = {
