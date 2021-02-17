@@ -80,11 +80,13 @@ const getRandomJokeResponse = (request, response, params, acceptedTypes, httpMet
   // Source: https://stackoverflow.com/questions/2219526/how-many-bytes-in-a-javascript-string/29955838
   // Refactored to an arrow function by ACJ
   const getBinarySize = string => Buffer.byteLength(string, 'utf8');
-    debugger;
+
   if(acceptedTypes.includes('text/xml')){
     if(httpMethod === 'HEAD'){
-        response.writeHead(200, { 'Content-Type': 'text/xml' });
-        response.writeHead(200, { 'Content-Length' : getBinarySize});
+        response.writeHead(206, {
+            'Content-Type': 'text/xml',
+            'Content-Length': getBinarySize(getRandomJokeXML(params.limit))
+        });
     }
     else{
         response.writeHead(200, { 'Content-Type': 'text/xml' });
@@ -93,8 +95,10 @@ const getRandomJokeResponse = (request, response, params, acceptedTypes, httpMet
   }
   else{
     if(httpMethod === 'HEAD'){
-        response.writeHead(200, { 'Content-Type': 'application/json' });
-        response.writeHead(200, { 'Content-Length' : getBinarySize });
+        response.writeHead(206, {
+            'Content-Type': 'application/json',
+            'Content-Length': getBinarySize(getRandomJokeJSON(params.limit))
+        });
     }
     else{
         response.writeHead(200, { 'Content-Type': 'application/json' });
